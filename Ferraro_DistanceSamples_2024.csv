@@ -319,8 +319,8 @@ block,treat,plant,dist,up_down,slope,d15,precN,precC,C/N,dist2
 18,T,Kalmia,0.75,down,8,38,1.1412,52.9369,46.3867,3
 19,T,Kalmia,0.75,down,25,-6,1.3382,54.6922,40.8711,3
 20,T,Kalmia,0.75,down,11,7,1.0179,53.0435,52.1109,3
-1,T,Lichen,1,up,13,-1,0.2465,43.2281,NA,4
-2,T,Lichen,1,up,25,NA,NA,NA,#VALUE!,4
+1,T,Lichen,1,up,13,-1,0.2465,43.2281,175.3675456,4
+2,T,Lichen,1,up,25,NA,NA,NA,NA,4
 3,T,Lichen,1,up,18,98,0.1894,43.1966,228.1006,4
 4,T,Lichen,1,up,6,NA,NA,NA,NA,4
 5,T,Lichen,1,up,4,NA,NA,NA,NA,4
