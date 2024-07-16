@@ -355,8 +355,11 @@ dist_data_base<-subset(dist_data, dist2 != "0")
 dist_data_base <- dist_data_base %>%
   mutate(dist2 = ifelse(dist2 == 5, 0, dist2))
 dist_data_base <- dist_data_base %>%
-  mutate(dist = ifelse(dist == 5, 0, dist))
+  mutate(dist = ifelse(dist == 5, 0, dist2))
 dist_data_base$block<-as.factor(dist_data_base$block)
+
+dist_data_base$dist2<-as.factor(dist_data_base$dist2)
+
 
 #....Lichen-----
 lichen_dist_base<-subset(dist_data_base, plant == "Lichen")
