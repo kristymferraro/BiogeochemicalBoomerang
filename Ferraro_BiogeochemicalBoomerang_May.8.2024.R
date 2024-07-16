@@ -1,6 +1,6 @@
 #Kristy Ferraro
 #Code for "The Biogeochemical Boomerang: Site Fidelity Creates Nutritional Hotspots that May Promote Recurrent Calving Site Reuse"
-#Last Updated May 2024
+#Last Updated July 2024
 
 #Libraries
 library(lme4)
@@ -13,7 +13,7 @@ library(ggpubr)
 # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
 #Data Load----
 # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
-fogo_data<-read.csv(".../Ferraro_BiogeochemicalBoomerang_Data_2024.csv")
+fogo_data<-read.csv("/Users/kristyferraro/Desktop/Ferraro_BiogeochemicalBoomerang_Data_2024.csv")
 fogo_no_controls<-subset(fogo_data, treat !="C")
 fogo_no_base<-subset(fogo_data, time !="Baseline")
 
@@ -57,7 +57,7 @@ Theme2<-theme(aspect.ratio = 1, panel.grid.minor = element_blank(), panel.grid.m
 #Models ----
 # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
 #Forage N Stock----
-#...Table 1 (forage N Stock)----
+#...Table 2 (forage N Stock)----
 forage_N_model<-lmer(N_stock_forage_gm2 ~ time*treat + (1|block), data = fogo_data)
 summary(forage_N_model)
 r2.mixed(forage_N_model)
@@ -77,7 +77,7 @@ forage_N_plot
 
 #= = = = = = = = == = = = == = = = == = = = == 
 #Biomass----
-#...Table 2 (biomass)----
+#...Table S1 (biomass)----
 biomass_model<-lmer(tot_forage_biomass_gm2 ~ time*treat + (1|block), data = fogo_no_base)
 summary(biomass_model)
 r2.mixed(biomass_model)
@@ -95,7 +95,7 @@ forage_biomass_plot
 
 #= = = = = = = = == = = = == = = = == = = = == 
 #%N-----
-#...Table S1 (%N) and Fig 2 (%N)----
+#...Table 2 (%N) and Fig 2 (%N)----
 forage_precN_col<-  c("block", "treat", "time",  "lichen_precN", "crow_precN", "Kleaf_precN", "lingon_precN", "moss_precN")
 forage_precN_data<- fogo_data[, forage_precN_col]
 forage_precN_data <- forage_precN_data %>%
@@ -228,9 +228,9 @@ plant_avs_from_control
 # = = = = = = = = = = = = = = = 
 #N recovery ----
 # = = = = = = = = = = = = = = = 
-#...Table 2 (N Recov)----
+#...Table 3 (N Recov)----
 
-#Froage Recovery
+#Forage Recovery
 forage_recoveryNmass_model<-lmer(forage_N_rec ~ time*treat + (1|block), data = fogo_no_base)
 summary(forage_recoveryNmass_model)
 r2.mixed(forage_recoveryNmass_model)
@@ -345,9 +345,11 @@ quartz()
 # = = = = = = = = = = = = = = = 
 #Distance ----
 # = = = = = = = = = = = = = = = 
-dist_data<-read.csv(".../Ferraro_DistanceSamples_2024.csv")
+dist_data<-read.csv("/Users/kristyferraro/Desktop/Ferraro_DistanceSamples_2024.csv")
 dist_data <- na.omit(dist_data)
 dist_data$C.N<-as.numeric(dist_data$C.N)
+dist_data$dist2<-as.factor(dist_data$dist2)
+
 
 dist_data_base<-subset(dist_data, dist2 != "0")
 dist_data_base <- dist_data_base %>%
@@ -366,7 +368,7 @@ summary(precN_lichen_dist_model_base)
 r2.mixed(precN_lichen_dist_model_base)
 
 #d15N
-d15N_lichen_dist_model_base<-lmer(log(d15) ~ dist2  + (1|block), data = lichen_dist_base)
+#d15N_lichen_dist_model_base<-lmer(log(d15) ~ dist2  + (1|block), data = lichen_dist_base)
 d15N_lichen_dist_model_base<-lmer(d15 ~ dist2  + (1|block), data = lichen_dist_base)
 summary(d15N_lichen_dist_model_base)
 r2.mixed(d15N_lichen_dist_model_base)
@@ -437,19 +439,19 @@ dist_plot
 
 # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
 #.S1 - Biomass----
-biomass_cols<-c("block", "treat", "time", "FR_gplot","CR_gm2", "lichen_gm2", "crow_gm2", "Kleaf_gm2", "Kstem_gm2",  "lingon_gm2", "moss_gm2",  "Oleaf_gm2",  "Ostem_gm2")
+biomass_cols<-c("block", "treat", "time", "lichen_gm2", "crow_gm2", "Kleaf_gm2", "Kstem_gm2",  "lingon_gm2", "moss_gm2",  "Oleaf_gm2",  "Ostem_gm2")
 
 fogo_biomass<- fogo_no_base[, biomass_cols]
 
 fogo_biomass<- fogo_biomass %>%
-  rename(Treatment = treat, Lichen = lichen_gm2, Crowberry = crow_gm2, "Sheep Laurel Leaf" = Kleaf_gm2, "Sheep Laurel Stem" = Kstem_gm2, Lingonberry = lingon_gm2, Moss = moss_gm2, "Other Leaf" = Oleaf_gm2, "Other Stem" = Ostem_gm2, "Fine Root" = FR_gplot, "Coarse Root" = CR_gm2) %>%
+  rename(Treatment = treat, Lichen = lichen_gm2, Crowberry = crow_gm2, "Sheep Laurel Leaf" = Kleaf_gm2, "Sheep Laurel Stem" = Kstem_gm2, Lingonberry = lingon_gm2, Moss = moss_gm2, "Other Leaf" = Oleaf_gm2, "Other Stem" = Ostem_gm2, ) %>%
   mutate(Treatment = recode(Treatment, "C" = "Control", "T" = "Treatment")) %>%
   mutate(time = recode(time, "Year1" = "2 Weeks", "Year2" = "1 Year"))
 
 fogo_biomass$time <- factor(fogo_biomass$time, levels = c("Baseline", "2 Weeks", "1 Year"))
 
 plant_biomass_long<- fogo_biomass %>% 
-  pivot_longer( cols = "Fine Root":"Other Stem", names_to = "plant", values_to = "biomass")
+  pivot_longer( cols = "Lichen":"Other Stem", names_to = "plant", values_to = "biomass")
 
 plant_biomass_long$plant <- factor(plant_biomass_long$plant, levels = c("Lichen", "Crowberry", "Lingonberry", "Moss", "Sheep Laurel Leaf", "Sheep Laurel Stem", "Other Leaf", "Other Stem", "Fine Root", "Coarse Root"))
 
