@@ -13,7 +13,7 @@ library(ggpubr)
 # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
 #Data Load----
 # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
-fogo_data<-read.csv(".../Ferraro_BiogeochemicalBoomerage_May.8.2024.csv")
+fogo_data<-read.csv(".../Ferraro_BiogeochemicalBoomerang_Data_2024.csv")
 fogo_no_controls<-subset(fogo_data, treat !="C")
 fogo_no_base<-subset(fogo_data, time !="Baseline")
 
