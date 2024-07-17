@@ -13,7 +13,7 @@ library(ggpubr)
 # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
 #Data Load----
 # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
-fogo_data<-read.csv("/Users/kristyferraro/Desktop/Ferraro_BiogeochemicalBoomerang_Data_2024.csv")
+fogo_data<-read.csv("/Ferraro_BiogeochemicalBoomerang_Data_2024.csv")
 fogo_no_controls<-subset(fogo_data, treat !="C")
 fogo_no_base<-subset(fogo_data, time !="Baseline")
 
@@ -345,7 +345,7 @@ quartz()
 # = = = = = = = = = = = = = = = 
 #Distance ----
 # = = = = = = = = = = = = = = = 
-dist_data<-read.csv("/Users/kristyferraro/Desktop/Ferraro_DistanceSamples_2024.csv")
+dist_data<-read.csv("/Ferraro_DistanceSamples_2024.csv")
 dist_data <- na.omit(dist_data)
 dist_data$C.N<-as.numeric(dist_data$C.N)
 dist_data$dist2<-as.factor(dist_data$dist2)
